@@ -1,4 +1,4 @@
-# Joseph's portfolio
+# Portfolio
 
 My personal website, with a short introduction, work experience, and selected side projects.
 
