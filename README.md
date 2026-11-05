@@ -2,6 +2,8 @@
 
 My personal website, with a short introduction, work experience, and selected side projects.
 
+[Visit the website](https://portfolio-8pu.pages.dev/)
+
 Built with Astro, React, TypeScript, and CSS. Astro generates the static page, while a small React component handles the light and dark theme toggle.
 
 ## Run locally
