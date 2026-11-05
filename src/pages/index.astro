@@ -1,0 +1,186 @@
+---
+import ThemeToggle from "../components/ThemeToggle";
+import { profile, projects } from "../data/profile";
+import "../styles/global.css";
+
+const title = `${profile.firstName} | Software engineer`;
+const description =
+  "Software engineer with full-stack experience and a preference for the backend. Financial software at work; community tools and experiments outside it.";
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#202025" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <title>{title}</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/assets/google-sans-flex.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem("portfolio-theme");
+        if (theme === "light" || theme === "dark")
+          document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <div class="page-shell">
+      <aside class="sidebar" aria-label="Profile and navigation">
+        <div class="sidebar-top">
+          <a
+            class="identity"
+            href="#hello"
+            aria-label={`${profile.firstName}, back to introduction`}
+          >
+            <span class="monogram" aria-hidden="true">
+              j<span>.</span>
+            </span>
+            <span class="identity-name">{profile.firstName}</span>
+          </a>
+          <ThemeToggle client:load />
+        </div>
+        <p class="sidebar-bio">
+          I’m {profile.firstName}, a software engineer working in fintech.
+        </p>
+        <nav aria-label="Main navigation">
+          <a href="#hello">
+            <span aria-hidden="true">👋</span> About
+          </a>
+          <a href="#work">
+            <span aria-hidden="true">💼</span> Experience
+          </a>
+          <a href="#projects">
+            <span aria-hidden="true">🛠️</span> Projects
+          </a>
+          <a href="#contact">
+            <span aria-hidden="true">✉️</span> Contact
+          </a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="social-links">
+            <a href={profile.github}>GitHub</a>
+            <a href={profile.linkedin}>LinkedIn</a>
+          </div>
+        </div>
+      </aside>
+
+      <main id="main">
+        <section class="intro" id="hello" aria-labelledby="intro-heading">
+          <h1 id="intro-heading">Hi, I’m {profile.firstName}.</h1>
+          <p class="intro-lead">
+            I work on financial software and build side projects around things I
+            find useful or interesting. I have full-stack experience and a
+            preference for backend development.
+          </p>
+          <div class="social-links intro-links">
+            <a href={`mailto:${profile.email}`}>{profile.email}</a>
+            <a href={profile.github}>GitHub</a>
+            <a href={profile.linkedin}>LinkedIn</a>
+          </div>
+        </section>
+
+        <section class="work section" id="work" aria-labelledby="work-heading">
+          <div class="section-heading">
+            <h2 id="work-heading">Experience</h2>
+          </div>
+          <div class="experience-heading">
+            <h3>Advanced Derivative Solutions</h3>
+            <p>
+              Full-stack developer <span>· {profile.employment}</span>
+            </p>
+            <p>{profile.employmentProgression}</p>
+          </div>
+          <p>
+            At Advanced Derivative Solutions, I help build a treasury management
+            application using Java, Spring Boot, Angular, and SQL. My work
+            includes financial calculations, permissions, reporting, and web
+            interfaces, from implementation and testing through to stakeholder
+            feedback.
+          </p>
+        </section>
+
+        <section
+          class="section projects"
+          id="projects"
+          aria-labelledby="projects-heading"
+        >
+          <div class="section-heading">
+            <h2 id="projects-heading">Personal projects</h2>
+          </div>
+          <p>Here are a few things I’ve been working on.</p>
+          <div class="project-list">
+            {projects.map((project) => (
+              <article class={`project ${project.kind}`}>
+                <div class="project-content">
+                  <div class="project-title">
+                    <h3>
+                      <a href={project.href}>{project.name}</a>
+                    </h3>
+                  </div>
+                  <p class="project-detail">{project.detail}</p>
+                  <div class="project-footer">
+                    <ul
+                      class="technologies"
+                      aria-label={`${project.name} technologies`}
+                    >
+                      {project.technologies.map((technology) => (
+                        <li>{technology}</li>
+                      ))}
+                    </ul>
+                    <a
+                      class="source-link"
+                      href={project.href}
+                      aria-label={`${project.name} ${project.linkLabel === "GitHub" ? "source on GitHub" : "demo"}`}
+                    >
+                      {project.linkLabel} <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          class="contact section"
+          id="contact"
+          aria-labelledby="contact-heading"
+        >
+          <h2 id="contact-heading">Contact</h2>
+          <p>
+            I’m open to international remote roles and employer-sponsored
+            relocation.
+          </p>
+          <a class="email-link" href={`mailto:${profile.email}`}>
+            {profile.email}
+            <span aria-hidden="true">↗</span>
+          </a>
+          <div class="social-links">
+            <a href={profile.linkedin}>LinkedIn</a>
+            <a href={profile.github}>GitHub</a>
+          </div>
+        </section>
+        <footer>
+          <p>{profile.firstName}</p>
+          <a href="#hello">Back to top ↑</a>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
