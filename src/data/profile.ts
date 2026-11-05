@@ -13,7 +13,7 @@ export const projects = [
   {
     name: "Treasury Workspace",
     detail:
-      "A personal treasury application for cash positions, currency exposure, and hedging. I designed and built the backend and React interface. The interactive demo uses fictional company data to explore cash flow, liquidity forecasts, and FX workflows.",
+      "A personal treasury application for cash positions, currency exposure, and hedging. I designed and built the backend and React interface; the full application's source is private. The separate frontend-only interactive demo uses fictional company data to illustrate cash flow, liquidity forecasts, and FX workflows, without a backend connection.",
     technologies: ["Java", "Spring Boot", "PostgreSQL", "React", "TypeScript"],
     href: "https://treasury-workspace.pages.dev/",
     linkLabel: "Try demo",
